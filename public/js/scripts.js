@@ -2,30 +2,40 @@ const clickMe = () => {
 	alert("Thanks for clicking me. Hope you have a nice day!");
 };
 
-const cardList = [
-	{
-		title: "Pumpkin",
-		image: "images/dog3.jpg",
-		link: "About Pumpkin",
-		description: "Pumpkin is a puppy",
-	},
-	{
-		title: "Roxy",
-		image: "images/dog4.jpg",
-		link: "About Roxy",
-		description: "Roxy is a puppy",
-	},
-];
+const addProjectToApp = (project) => {
+    $.ajax({
+        url: '/api/projects',
+        data: project,
+        type: 'POST',
+        success: (result) => {
+            alert(result.message);
+            location.reload();
+        }
+    })
+}
+
 
 const submitForm = () => {
 	let formData = {};
-	formData.first_name = $("#first_name").val();
-	formData.last_name = $("#last_name").val();
-	formData.password = $("#password").val();
-	formData.email = $("#email").val();
+	formData.title = $("#title").val();
+	formData.image = $("#image").val();
+	formData.link = $("#link").val();
+	formData.description = $("#description").val();
 
 	console.log("Form Data Submitted: ", formData);
+	addProjectToApp(formData);
 };
+const getProjects = () => {
+    $.get('/api/projects',(response) => {
+        if(response.statusCode==200){
+            console.log(response)
+            addCards(response.data);
+        }
+        else {
+            console.log(response)
+        }
+    })
+}
 
 const addCards = (items) => {
 	items.forEach((item) => {
@@ -52,12 +62,22 @@ const addCards = (items) => {
 	});
 };
 
-$(document).ready(function () {
-	$(".materialboxed").materialbox();
-	addCards(cardList);
-	$(".modal").modal();
-	$("#formSubmit").click(() => {
-		clickMe();
-		submitForm();
-	});
-});
+
+$(document).ready(function(){​
+
+    $('.materialboxed').materialbox();​
+
+    $('#formSubmit').click(()=>{​
+
+        submitForm();​
+
+    })​
+
+    getProjects();​
+
+    $('.modal').modal();​
+
+  });
+
+
+​​
