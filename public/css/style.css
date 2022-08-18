@@ -1,0 +1,29 @@
+div.centred {
+  text-align: center;
+}
+.navbar-size {
+  width: 90%;
+  margin: 10 auto;
+}
+.user-image-size {
+  height: 52px;
+  margin: 4px 0;
+}
+.main-body {
+  background-color: #f28487;
+  color: white;
+  height: calc(100vh - 64px);
+}
+.materialboxed {
+  margin: 0 auto;
+  height: 400px;
+  border-radius: 25px;
+}
+.card-image{
+  height:300px;
+}
+
+.click-me-button {
+  background-color: #ee6e73;
+  margin-top: 50px;
+}
