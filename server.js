@@ -1,10 +1,10 @@
 var express = require("express");
 var app = express();
-var cors = require('cors')
+var cors = require('cors');
+require('dotenv/config');
 const MongoClient = require('mongodb').MongoClient;
 let projectCollection;
 
-// Add nav bar with logo, material box for image inspection, reveal card, modal (call it first) form, collect data from form timestamp 1:17:39 (-0:20:00)
 
 app.use(express.static(__dirname + "/public"));
 app.use(express.json());
@@ -13,7 +13,7 @@ app.use(cors())
 
 
 //connection
-const uri ="mongodb+srv://"+process.env.AyaSJ+":"+process.env.t7hpB5fwtTY73S+"@prac4.th6vaw0.mongodb.net/?retryWrites=true&w=majority"​
+const uri ="mongodb+srv://"+process.env.mongo_user+":"+process.env.mongo_password+"@prac4.th6vaw0.mongodb.net/?retryWrites=true&w=majority"​
 const client =  new MongoClient(uri,{ useNewUrlParser: true })
 
 var port = process.env.port || 3000;
